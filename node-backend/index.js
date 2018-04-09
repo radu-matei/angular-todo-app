@@ -1,23 +1,18 @@
-const express = require('express');
-const bodyParser = require('body-parser');
+var express = require('express');
+var bodyParser = require('body-parser');
 var cors = require('cors');
 
-
-const port = process.env.PORT || 8080;
-const app = express();
-const router = express.Router();
+var port = process.env.PORT || 8080;
+var app = express();
+var router = express.Router();
 
 app.use(cors())
 app.use(bodyParser.json());
-
-
 app.use("/todos", router);
 
 app.listen(port, function () {
     console.log(`Express server listening on port ${port}`);
 });
-
-module.exports = app; 
 
 const inMemoryTodoDB = [
     { id: 0, title: 'Learn Kubernetes', complete: true },
@@ -27,13 +22,13 @@ const inMemoryTodoDB = [
 ];
 
 router.get('/', (req, res) => {
-    console.log(req)
+    console.log(req.method + " " + req.url)
     res.status(200)
         .json(inMemoryTodoDB);
 });
 
 router.get('/:id', (req, res) => {
-    console.log(req)
+    console.log(req.method + " " + req.url)
 
     const { id } = req.params;
     const todoItem = inMemoryTodoDB.filter((todo) => todo.id == id)[0];
@@ -47,13 +42,15 @@ router.get('/:id', (req, res) => {
 });
 
 router.post('/', (req, res) => {
-    console.log(req)
+    console.log(req.method + " " + req.url)
 
     const { title, complete } = req.body;
-
-    const lastId = inMemoryTodoDB[inMemoryTodoDB.length - 1].id;
+    var lastId;
+    var last = inMemoryTodoDB[inMemoryTodoDB.length - 1];
+    if (last == undefined) {
+        lastId = -1;
+    }
     const id = lastId + 1;
-
     const newTodo = { id, title, complete };
 
     inMemoryTodoDB.push(newTodo);
@@ -65,12 +62,10 @@ router.post('/', (req, res) => {
 });
 
 router.put('/:id', (req, res) => {
-    console.log(req)
+    console.log(req.method + " " + req.url)
 
     const { id, title, complete } = req.body;
     const newTodo = { id, title, complete };
-
-
 
     const exists = inMemoryTodoDB.filter((todo) => todo.id == id).length > 0;
     if (!exists) {
@@ -88,10 +83,9 @@ router.put('/:id', (req, res) => {
 });
 
 router.delete('/:id', (req, res) => {
-    console.log(req)
+    console.log(req.method + " " + req.url)
 
     const { id } = req.params;
-
     const todoItem = inMemoryTodoDB.filter((todo) => todo.id == id)[0];
 
     if (!todoItem) {
@@ -99,10 +93,8 @@ router.delete('/:id', (req, res) => {
         return;
     }
     inMemoryTodoDB.splice(inMemoryTodoDB.indexOf((todo) => todo.id == id), 1);
-
     res.sendStatus(200);
-
 });
 
-
+module.exports = app;
 module.exports = router;
