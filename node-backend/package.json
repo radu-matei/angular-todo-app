@@ -1,0 +1,16 @@
+{
+  "name": "todo-api",
+  "version": "0.0.1",
+  "description": "Backend for a silly TODO app",
+  "main": "index.js",
+  "scripts": {
+    "start": "node --inspect index.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.17.2",
+    "cors": "^2.8.4",
+    "express": "^4.16.3"
+  }
+}

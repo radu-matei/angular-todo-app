@@ -1,0 +1,19 @@
+{
+  "todos": [
+    {
+      "title": "Clean inbox",
+      "complete": true,
+      "id": 2
+    },
+    {
+      "title": "Make restaurant reservation",
+      "complete": false,
+      "id": 3
+    },
+    {
+      "title": "Learn Draft",
+      "complete": true,
+      "id": 4
+    }
+  ]
+}
