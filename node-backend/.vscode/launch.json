@@ -5,13 +5,17 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "type": "node",
-            "request": "attach",
-            "name": "Attach to Remote",
-            "address": "localhost",
-            "port": 9229,
-            "localRoot": "${workspaceFolder}/api/todos.js",
-        },
-
+            "type": "draft",
+            "request": "launch",
+            "name": "Draft Debug",
+            "original-debug": {
+                "type": "node",
+                "request": "attach",
+                "name": "Attach to remote",
+                "address": "localhost",
+                "port": 9229,
+                "remoteRoot": "/usr/src/app/"
+            }
+        }
     ]
 }

@@ -40,7 +40,7 @@ export class ApiService {
     return this.http
       .get(API_URL + '/todos/' + todoId)
       .map(response => {
-        return new Todo(response.json());
+        return new Todo(response);
       })
       .catch(this.handleError);
   }
@@ -49,7 +49,7 @@ export class ApiService {
     return this.http
       .put(API_URL + '/todos/' + todo.id, todo)
       .map(response => {
-        return new Todo(response.json());
+        return new Todo(response);
       })
       .catch(this.handleError);
   }
