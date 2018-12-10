@@ -49,6 +49,8 @@ router.post('/', (req, res) => {
     var last = inMemoryTodoDB[inMemoryTodoDB.length - 1];
     if (last == undefined) {
         lastId = -1;
+    } else {
+        lastId = last["id"];
     }
     const id = lastId + 1;
     const newTodo = { id, title, complete };
