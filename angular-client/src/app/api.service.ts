@@ -13,7 +13,7 @@ const API_URL = environment.apiUrl;
 export class ApiService {
 
   constructor(
-    private http: Http
+    public http: Http
   ) {
   }
 
@@ -60,6 +60,14 @@ export class ApiService {
       .map(response => null)
       .catch(this.handleError);
   }
+
+  public getRandomTodo(): Observable<Todo> {
+    return this.http
+      .get(API_URL + '/random')
+      .map(response => {
+        return new Todo(response);
+      })
+      .catch(this.handleError);  }
 
   private handleError (error: Response | any) {
     console.error('ApiService::handleError', error);

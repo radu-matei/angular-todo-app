@@ -1,6 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Injectable } from '@angular/core';
 import { TodoDataService } from './todo-data.service';
 import { Todo } from './todo';
+import { environment } from 'environments/environment';
+import { Observable } from 'rxjs/Observable';
+import { ApiService } from './api.service';
 
 @Component({
   selector: 'app-root',
@@ -8,12 +11,16 @@ import { Todo } from './todo';
   styleUrls: ['./app.component.css'],
   providers: [TodoDataService]
 })
+@Injectable()
 export class AppComponent implements OnInit {
 
+
   todos: Todo[] = [];
+  random ;
 
   constructor(
-    private todoDataService: TodoDataService
+    private todoDataService: TodoDataService,
+    private api: ApiService
   ) {
   }
 
@@ -55,5 +62,16 @@ export class AppComponent implements OnInit {
           this.todos = this.todos.filter((t) => t.id !== todo.id);
         }
       );
+  }
+
+  getRandomTodo() {
+    this.api.http.get(environment.apiUrl + "/random")
+    .subscribe(
+      (res) => {
+        this.random = res.json().title
+      }, (err) => {
+        this.random = err
+      }
+    )
   }
 }
