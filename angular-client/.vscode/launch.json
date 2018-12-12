@@ -10,6 +10,18 @@
             "name": "Launch Chrome against localhost",
             "url": "http://localhost:4200",
             "webRoot": "${workspaceFolder}"
+        },
+        {
+            "type": "draft",
+            "request": "launch",
+            "name": "Draft Debug",
+            "original-debug": {
+                "type": "chrome",
+                "request": "launch",
+                "name": "Launch Chrome against localhost",
+                "url": "http://localhost:4200",
+                "webRoot": "/home/radu/go/src/github.com/radu-matei/angular-todo-app/angular-client"
+            }
         }
     ]
 }
