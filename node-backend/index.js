@@ -4,11 +4,21 @@ var cors = require('cors');
 
 var port = process.env.PORT || 8080;
 var app = express();
+
+
 var router = express.Router();
+var rr = express.Router();
 
 app.use(cors())
 app.use(bodyParser.json());
+
 app.use("/todos", router);
+app.use("/random", rr);
+
+rr.get('/', (req, res) => {
+    throw new Error("BROKEN");
+    //res.sendStatus(403);
+});
 
 app.listen(port, function () {
     console.log(`Express server listening on port ${port}`);
@@ -98,9 +108,6 @@ router.delete('/:id', (req, res) => {
 });
 
 
-router.get('*', function(req, res){
-    res.send('what???', 404);
-  });
 
 module.exports = app;
 module.exports = router;
