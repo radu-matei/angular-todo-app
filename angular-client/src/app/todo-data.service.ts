@@ -3,6 +3,7 @@ import { Todo } from './todo';
 import { ApiService } from './api.service';
 import { Observable } from 'rxjs/Observable';
 import { ApiMockService } from './api-mock.service';
+import { environment } from 'environments/environment';
 
 @Injectable()
 export class TodoDataService {
@@ -41,6 +42,10 @@ export class TodoDataService {
   toggleTodoComplete(todo: Todo) {
     todo.complete = !todo.complete;
     return this.api.updateTodo(todo);
+  }
+
+  getRandomTodo(): Observable<Todo> {
+    return this.api.getRandomTodo();
   }
 
 }

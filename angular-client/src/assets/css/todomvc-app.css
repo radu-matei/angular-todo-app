@@ -4,12 +4,12 @@ body {
 	padding: 0;
 }
 
-button {
+ button {
 	margin: 0;
 	padding: 0;
 	border: 0;
 	background: none;
-	font-size: 100%;
+	font-size: 400%;
 	vertical-align: baseline;
 	font-family: inherit;
 	font-weight: inherit;
