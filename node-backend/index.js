@@ -50,6 +50,7 @@ router.post('/', (req, res) => {
     if (last == undefined) {
         lastId = -1;
     }
+    //const id = last.id + 1;
     const id = lastId + 1;
     const newTodo = { id, title, complete };
 
@@ -95,6 +96,11 @@ router.delete('/:id', (req, res) => {
     inMemoryTodoDB.splice(inMemoryTodoDB.indexOf((todo) => todo.id == id), 1);
     res.sendStatus(200);
 });
+
+
+router.get('*', function(req, res){
+    res.send('what???', 404);
+  });
 
 module.exports = app;
 module.exports = router;
